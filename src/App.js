@@ -131,12 +131,12 @@ class HabitConfig extends Component {
   }
   async clickUndo() {
     let habit = this.props.habit;
-    let dataString = this.props.dateString;
-    console.log(dataString);
-    if (habit.journal[dataString] === undefined || habit.journal[dataString].activity.length === 0) {
+    let dateString = this.props.dateString;
+    console.log(dateString);
+    if (habit.journal[dateString] === undefined || habit.journal[dateString].activity.length === 0) {
       return;
     } else {
-      habit.journal[dataString].activity.pop();
+      habit.journal[dateString].activity.pop();
       await this.props.modifiyHabit(habit);
     }
   }
@@ -253,6 +253,33 @@ class HabitCreate extends Component {
   }
 }
 
+class AppConfig extends Component {
+  constructor(props) {
+    super(props);
+    this.clearDatabase = this.clearDatabase.bind(this);
+  }
+
+  async clearDatabase() {
+    let confirmDelete = window.confirm("Confirm delete the database content?");
+    if (confirmDelete) {
+      console.log("delete database")
+      await this.props.database.clear("habits");
+      this.props.clearHabit()
+    }
+  }
+
+  render() {
+    return (
+      <div className="row">
+        <div className="col">
+          <div className="btn btn-outline-danger btn-lg btn-block" onClick={this.clearDatabase}>Clear Database</div>
+        </div>
+      </div>
+    )
+
+  }
+}
+
 class NavBar extends React.Component {
   render() {
     return (
@@ -271,8 +298,8 @@ class NavBar extends React.Component {
 }
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { habits: {}, date: new Date(), mode: { mode: "normal" } };
     this.dateString = this.dateString.bind(this);
     this.dateToDateString = this.dateToDateString.bind(this);
@@ -384,7 +411,8 @@ class App extends Component {
         {habitDisplay}
         <div className="row">
           <div className="col-6 pr-1">
-            <div className="btn btn-outline-primary btn-lg btn-block">
+            <div className="btn btn-outline-primary btn-lg btn-block"
+              onClick={() => this.changeMode({ mode: "appConfig" })}>
               <i className="fas fa-cog"></i></div>
           </div>
           <div className="col-6 pl-1">
@@ -403,6 +431,11 @@ class App extends Component {
       navBar = returnNvaBar;
     } else if (this.state.mode.mode === "create") {
       mainContent = (<HabitCreate changeMode={this.changeMode} createHabit={this.createHabit} ></HabitCreate>)
+      navBar = returnNvaBar;
+    } else if (this.state.mode.mode === "appConfig") {
+      mainContent = (<AppConfig
+        clearHabit={() => { this.setState({ mode: { mode: "normal" }, habits: {} }) }}
+        database={this.database}></AppConfig>)
       navBar = returnNvaBar;
     }
     return (<div className="container">{navBar}{mainContent}</div>)
