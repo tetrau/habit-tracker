@@ -282,10 +282,10 @@ class NavBar extends React.Component {
     return (
       <div className="navbar navbar-light bg-light mb-2">
         <div className="container d-flex justify-content-between">
-          <a className="btn btn-outline-primary btn-sm"
+          <a className="btn btn-outline-link btn-sm"
             onClick={this.props.clickLeft}>&lt;</a>
           <a className="navbar-brand">{this.props.dateString}</a>
-          <a className="btn btn-outline-primary btn-sm"
+          <a className="btn btn-outline-link btn-sm"
             onClick={this.props.clickRight}
             style={{ visibility: this.props.hideRight ? 'hidden' : 'visible' }}>&gt;</a>
         </div>
@@ -345,6 +345,7 @@ class App extends Component {
   async componentDidMount() {
     let database = await openDB('habitTracker', 1, {
       upgrade(db, oldVersion, newVersion, transaction) {
+        console.log("create database")
         db.createObjectStore('habits', { "keyPath": "id" });
       }
     });
