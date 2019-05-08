@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://tetrau.github.io/habit-tracker",
   "dependencies": {
+    "@githubprimer/octicons-react": "^8.5.0",
     "bootstrap": "^4.3.1",
     "gh-pages": "^2.0.1",
     "idb": "^4.0.3",
@@ -39,7 +40,6 @@
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
-    "@babel/runtime": "^7.4.4",
-    "@fortawesome/fontawesome-free": "^5.8.2"
+    "@babel/runtime": "^7.4.4"
   }
 }

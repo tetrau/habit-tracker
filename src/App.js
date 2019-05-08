@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from "react";
 import 'bootstrap';
 import { openDB, deleteDB, wrap, unwrap } from 'idb';
-import '@fortawesome/fontawesome-free/css/all.min.css'
+import Octicon, { Gear, Plus } from '@githubprimer/octicons-react'
 
 class Habit extends React.Component {
   constructor(props) {
@@ -409,12 +409,14 @@ class App extends Component {
           <div className="col-6 pr-1">
             <div className="btn btn-outline-primary btn-lg btn-block"
               onClick={() => this.changeMode({ mode: "appConfig" })}>
-              <i className="fas fa-cog"></i></div>
+              <Octicon icon={Gear} size='medium'></Octicon>
+            </div>
           </div>
           <div className="col-6 pl-1">
             <div className="btn btn-outline-primary btn-lg btn-block"
               onClick={() => this.changeMode({ mode: "create" })}>
-              <i className="fas fa-plus"></i></div>
+              <Octicon icon={Plus} size='medium'></Octicon>
+            </div>
           </div>
         </div></React.Fragment>);
       navBar = dateChangeNaveBar;
