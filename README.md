@@ -15,3 +15,9 @@ Then, type the habit's name and the daily goal. Once you're done, click the "Sav
 And, Here it is. You have successfully create your first habit!
 
 ![demo.create.habit.3](doc/img/demo.create.habit.3.png)
+
+### Step 2: Log your activities
+
+Click the right part of each habit card to add a count.
+
+![demo.add.count](doc/img/demo.add.count.png)
