@@ -283,7 +283,7 @@ class NavBar extends React.Component {
         <div className="container d-flex justify-content-between">
           <a className="btn btn-outline-link btn-sm"
             onClick={this.props.clickLeft}>&lt;</a>
-          <a className="navbar-brand">{this.props.dateString}</a>
+          <a className="navbar-brand" onClick={this.props.gotoToday}>{this.props.dateString}</a>
           <a className="btn btn-outline-link btn-sm"
             onClick={this.props.clickRight}
             style={{ visibility: this.props.hideRight ? 'hidden' : 'visible' }}>&gt;</a>
@@ -394,14 +394,16 @@ class App extends Component {
           this.setState({ date: newDate });
         }}
         hideRight={false}
-        dateString={this.dateString()}>
-      </NavBar>);
+        dateString={this.dateString()}
+        gotoToday={() => this.setState({ date: new Date() })}>
+      </NavBar >);
     let returnNvaBar = (
       <NavBar
         clickLeft={() => this.changeMode({ mode: "normal" })}
         clickRight={() => { }}
         hideRight={true}
-        dateString={this.dateString()}></NavBar>)
+        dateString={this.dateString()}
+        gotoToday={() => this.setState({ date: new Date() })}></NavBar>)
     if (this.state.mode.mode === "normal") {
       mainContent = (<React.Fragment>
         {habitDisplay}
