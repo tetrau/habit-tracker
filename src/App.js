@@ -132,7 +132,6 @@ class HabitConfig extends Component {
   async clickUndo() {
     let habit = this.props.habit;
     let dateString = this.props.dateString;
-    console.log(dateString);
     if (habit.journal[dateString] === undefined || habit.journal[dateString].activity.length === 0) {
       return;
     } else {
@@ -218,7 +217,6 @@ class HabitCreate extends Component {
       return;
     }
     let goal = Number(document.getElementById("habit-goal").value)
-    console.log(goal)
     if (!Number.isInteger(goal) || goal <= 0) {
       this.setState({ goalValid: false })
       return;
@@ -262,7 +260,6 @@ class AppConfig extends Component {
   async clearDatabase() {
     let confirmDelete = window.confirm("Confirm delete the database content?");
     if (confirmDelete) {
-      console.log("delete database")
       await this.props.database.clear("habits");
       this.props.clearHabit()
     }
@@ -348,7 +345,6 @@ class App extends Component {
   async componentDidMount() {
     let database = await openDB('habitTracker', 1, {
       upgrade(db, oldVersion, newVersion, transaction) {
-        console.log("create database")
         db.createObjectStore('habits', { "keyPath": "id" });
       }
     });
@@ -441,4 +437,5 @@ class App extends Component {
     return (<div className="container">{navBar}{mainContent}</div>)
   }
 }
+
 export default App;

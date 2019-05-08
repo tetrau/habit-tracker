@@ -2,8 +2,10 @@
   "name": "habit-tracker",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://tetrau.github.io/habit-tracker",
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "gh-pages": "^2.0.1",
     "idb": "^4.0.3",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
@@ -12,6 +14,8 @@
     "react-scripts": "3.0.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
