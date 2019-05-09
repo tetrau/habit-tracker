@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from "react";
 import 'bootstrap';
-import { openDB, deleteDB, wrap, unwrap } from 'idb';
+import { openDB } from 'idb';
 import Octicon, { Gear, Plus } from '@githubprimer/octicons-react'
 
 class Habit extends React.Component {
