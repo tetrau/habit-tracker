@@ -6,32 +6,7 @@ import Octicon, { Gear, Plus } from '@githubprimer/octicons-react'
 import Habit from "./habit-card"
 import HabitDetail from "./habit-detail"
 import HabitCreate from "./habit-create"
-
-class AppConfig extends Component {
-  constructor(props) {
-    super(props);
-    this.clearDatabase = this.clearDatabase.bind(this);
-  }
-
-  async clearDatabase() {
-    let confirmDelete = window.confirm("Confirm delete the database content?");
-    if (confirmDelete) {
-      await this.props.database.clear("habits");
-      this.props.clearHabit()
-    }
-  }
-
-  render() {
-    return (
-      <div className="row">
-        <div className="col">
-          <div className="btn btn-outline-danger btn-lg btn-block" onClick={this.clearDatabase}>Clear Database</div>
-        </div>
-      </div>
-    )
-
-  }
-}
+import AppConfig from "./app-config"
 
 class NavBar extends React.Component {
   render() {
@@ -192,7 +167,8 @@ class App extends Component {
     } else if (this.state.mode.mode === "appConfig") {
       mainContent = (<AppConfig
         clearHabit={() => { this.setState({ mode: { mode: "normal" }, habits: {} }) }}
-        database={this.database}></AppConfig>)
+        database={this.database}
+        habits={this.state.habits}></AppConfig>)
       navBar = returnNvaBar;
     }
     return (<div className="container">{navBar}{mainContent}</div>)

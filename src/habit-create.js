@@ -62,46 +62,4 @@ class HabitCreate extends Component {
   }
 }
 
-class AppConfig extends Component {
-  constructor(props) {
-    super(props);
-    this.clearDatabase = this.clearDatabase.bind(this);
-  }
-
-  async clearDatabase() {
-    let confirmDelete = window.confirm("Confirm delete the database content?");
-    if (confirmDelete) {
-      await this.props.database.clear("habits");
-      this.props.clearHabit()
-    }
-  }
-
-  render() {
-    return (
-      <div className="row">
-        <div className="col">
-          <div className="btn btn-outline-danger btn-lg btn-block" onClick={this.clearDatabase}>Clear Database</div>
-        </div>
-      </div>
-    )
-
-  }
-}
-
-class NavBar extends React.Component {
-  render() {
-    return (
-      <div className="navbar navbar-light bg-light mb-2">
-        <div className="container d-flex justify-content-between">
-          <a className="btn btn-outline-link btn-sm"
-            onClick={this.props.clickLeft}>&lt;</a>
-          <a className="navbar-brand" onClick={this.props.gotoToday}>{this.props.dateString}</a>
-          <a className="btn btn-outline-link btn-sm"
-            onClick={this.props.clickRight}
-            style={{ visibility: this.props.hideRight ? 'hidden' : 'visible' }}>&gt;</a>
-        </div>
-      </div>
-    )
-  }
-}
 export default HabitCreate;
